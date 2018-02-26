@@ -100,6 +100,8 @@ public class MessageReceiver {
 > MessageListenerAdapter通过反射调用receiveMessage方法处理消息
 
 
+[github代码](https://github.com/mapcme/springboot-redis-message-pubsub-demo)
+
 ----------
 
 参考资料：
