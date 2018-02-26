@@ -19,7 +19,7 @@ spring.redis.timeout=0
 
 - redis configuration
 
-```
+```java
 @Configuration //相当于xml中的beans
 public class RedisConfig {
 
