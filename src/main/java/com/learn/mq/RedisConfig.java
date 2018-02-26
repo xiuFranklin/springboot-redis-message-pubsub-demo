@@ -11,10 +11,17 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 /**
  * Created by chao.du on 2018/2/23.
  */
-@Configuration
+@Configuration //相当于xml中的beans
 public class RedisConfig {
 
-    @Bean
+    /**
+     * redis消息监听器容器
+     * 可以添加多个监听不同话题的redis监听器，只需要把消息监听器和相应的消息订阅处理器绑定，该消息监听器通过反射技术调用消息订阅处理器的相关方法进行一些业务处理
+     * @param connectionFactory
+     * @param listenerAdapter
+     * @return
+     */
+    @Bean //相当于xml中的bean
     RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory,
                                             MessageListenerAdapter listenerAdapter) {
 
@@ -26,6 +33,11 @@ public class RedisConfig {
         return container;
     }
 
+    /**
+     * 消息监听器适配器，绑定消息处理器，利用反射技术调用消息处理器的业务方法
+     * @param receiver
+     * @return
+     */
     @Bean
     MessageListenerAdapter listenerAdapter(MessageReceiver receiver) {
         //这个地方 是给messageListenerAdapter 传入一个消息接受的处理器，利用反射的方法调用“receiveMessage”
